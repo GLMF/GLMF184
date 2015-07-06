@@ -1,0 +1,33 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+
+\begin{document}
+    \begin{tikzpicture}[scale=1]
+        % axes
+        \tikzset{axis/.style={->,>=stealth',very thick}};
+        \draw[axis] (0, -5) -- (0, 5);
+        \draw[axis] (-5, 0) -- (5, 0);
+
+        % Nom des axes
+        \draw (0,5) node[above right]{$y$};
+        \draw (5,0) node[above right]{$x$};
+        
+
+
+        % Origine        
+        \coordinate (O) at (0, 0);
+        \filldraw[blue] (O) circle (2pt) node[above right] {$(0, 0)$};
+        
+        \coordinate (A) at (-3, 2);
+        \filldraw[red] (A) circle (2pt) node[left] {(-3, 2)};
+        \draw[dashed, red] (-3,2) to (-3, 0);
+        \draw[dashed, red] (-3,2) to (0, 2);
+        
+        % Graduation
+        \foreach \x in {-5,-4,-3,-2,-1,1,2,3,4}
+            \draw (\x,2pt) -- (\x,-2pt) node[below,fill=white] {$\x$};
+        \foreach \y in {-5,-4,-3,-2,-1,1,2,3,4}
+            \draw (2pt,\y) -- (-2pt,\y) node[left,fill=white] {$\y$};
+    \end{tikzpicture}
+\end{document}

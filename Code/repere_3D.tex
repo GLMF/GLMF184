@@ -1,0 +1,44 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+
+\begin{document}
+    \begin{tikzpicture}[scale=1]
+        % axes
+        \tikzset{axis/.style={->,>=stealth',very thick}};
+        \coordinate (O) at (0, 0, 0);
+        \draw[axis] (O) -- (0, 0, 5);
+        \draw[axis] (O) -- (0, 5, 0);
+        \draw[axis] (O) -- (5, 0, 0);
+
+        % Nom des axes
+        \draw (0, 0, 5) node[below left]{$x$};
+        \draw (5, 0, 0) node[above right]{$y$};
+        \draw (0, 5, 0) node[above right]{$z$};
+        
+        % Prolongement des axes
+        \tikzset{hidden_axis/.style={very thin,gray!50}};
+        \draw[hidden_axis] (O) -- (0, 0, -5);
+        \draw[hidden_axis] (O) -- (0, -5, 0);
+        \draw[hidden_axis] (O) -- (-5, 0, 0);
+
+
+        % Origine        
+        \filldraw[blue] (O) circle (2pt) node[above right] {$(0, 0, 0)$};
+        
+        % Point (2, 3, 2)
+        \coordinate (A) at (3, 2, 2);
+        \filldraw[red] (A) circle (2pt) node[right] {(2, 3, 2)}; 
+        \draw[dashed,red] (A) -- (3, 0, 2) -- (3, 0, 0) -- (3, 2, 0);        
+        \draw[dashed,red] (A) -- (3, 2, 0) -- (0, 2, 0) -- (0, 2, 2);
+        \draw[dashed,red] (A) -- (0, 2, 2) -- (0, 0, 2) -- (3, 0, 2);
+        
+        % Graduation
+        \foreach \x in {1,...,4}
+            \draw (0.2, 0, \x) -- (-0.2, 0, \x) node[left] {$\x$};
+        \foreach \y in {1,...,4}
+            \draw (\y, 0.2, 0) -- (\y, -0.2, 0) node[below] {$\y$};
+        \foreach \z in {1,...,4}
+            \draw (0.2, \z, 0) -- (-0.2, \z, 0) node[left] {$\z$};
+    \end{tikzpicture}
+\end{document}
